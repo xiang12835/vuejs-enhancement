@@ -1,4 +1,4 @@
-选择题 
+>选择题 
 
 1、下面关于虚拟 DOM 的说法正确的是：（A C D）
 
@@ -20,7 +20,20 @@ C. Snabbdom 库本身可以处理 DOM 的属性、事件、样式等操作。
 
 D. 使用 patch(oldVnode, null) 可以清空页面元素
 
-简答题
+>简答题
 
 1、请简述 patchVnode 函数的执行过程。
 
+找到对应的真实 dom，称为 el
+
+判断 vnode 和 oldVnode 是否指向同一个对象。
+
+如果是，那么直接 return。
+
+如果他们都有文本节点并且不相等，那么将 el 的文本节点设置为 vnode 的文本节点。
+
+如果 oldVnode 有子节点而 vnode 没有，则删除 el 的子节点。
+
+如果 oldVnode 没有子节点而 vnode 有，则将 vnode 的子节点真实化之后添加到 el
+
+如果两者都有子节点，则执行 updateChildren 函数比较子节点。
